@@ -1,7 +1,11 @@
 import 'package:battleship/pages/start.dart';
 import 'package:flutter/material.dart';
+import 'package:global_configuration/global_configuration.dart';
 
-void main() => runApp(MyApp());
+void main() async {
+  await GlobalConfiguration().loadFromAsset("app_settings");
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
