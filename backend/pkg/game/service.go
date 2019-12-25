@@ -10,8 +10,20 @@ type Repository interface {
 }
 
 type Service interface {
+	Create(ctx context.Context) (Game, error)
+}
+
+func NewService() Service {
+	return &service{}
 }
 
 type service struct {
 	r Repository
+}
+
+func (s *service) Create(ctx context.Context) (Game, error) {
+	f := Field{}
+	f.PlaceShips(DefaultMaxAttempts)
+	g := Game{Fields: []Field{f}}
+	return g, nil
 }
