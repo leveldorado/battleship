@@ -1,1 +1,74 @@
 .idea
+# Miscellaneous
+frontend/battleship/.class
+frontend/battleship/*.log
+frontend/battleship/*.pyc
+frontend/battleship/*.swp
+frontend/battleship/.DS_Store
+frontend/battleship/.atom/
+frontend/battleship/.buildlog/
+frontend/battleship/.history
+frontend/battleship/.svn/
+
+# IntelliJ related
+frontend/battleship/*.iml
+frontend/battleship/*.ipr
+frontend/battleship/*.iws
+frontend/battleship/.idea/
+
+# The .vscode folder contains launch configuration and tasks you configure in
+# VS Code which you may wish to be included in version control, so this line
+# is commented out by default.
+#.vscode/
+
+# Flutter/Dart/Pub related
+frontend/battleship/**/doc/api/
+frontend/battleship/.dart_tool/
+frontend/battleship/.flutter-plugins
+frontend/battleship/.packages
+frontend/battleship/.pub-cache/
+frontend/battleship/.pub/
+frontend/battleship/build/
+
+# Android related
+frontend/battleship/**/android/**/gradle-wrapper.jar
+frontend/battleship/**/android/.gradle
+frontend/battleship/**/android/captures/
+frontend/battleship/**/android/gradlew
+frontend/battleship/**/android/gradlew.bat
+frontend/battleship/**/android/local.properties
+frontend/battleship/**/android/**/GeneratedPluginRegistrant.java
+
+# iOS/XCode related
+frontend/battleship/**/ios/**/*.mode1v3
+frontend/battleship/**/ios/**/*.mode2v3
+frontend/battleship/**/ios/**/*.moved-aside
+frontend/battleship/**/ios/**/*.pbxuser
+frontend/battleship/**/ios/**/*.perspectivev3
+frontend/battleship/**/ios/**/*sync/
+frontend/battleship/**/ios/**/.sconsign.dblite
+frontend/battleship/**/ios/**/.tags*
+frontend/battleship/**/ios/**/.vagrant/
+frontend/battleship/**/ios/**/DerivedData/
+frontend/battleship/**/ios/**/Icon?
+frontend/battleship/**/ios/**/Pods/
+frontend/battleship/**/ios/**/.symlinks/
+frontend/battleship/**/ios/**/profile
+frontend/battleship/**/ios/**/xcuserdata
+frontend/battleship/**/ios/.generated/
+frontend/battleship/**/ios/Flutter/App.framework
+frontend/battleship/**/ios/Flutter/Flutter.framework
+frontend/battleship/**/ios/Flutter/Generated.xcconfig
+frontend/battleship/**/ios/Flutter/app.flx
+frontend/battleship/**/ios/Flutter/app.zip
+frontend/battleship/**/ios/Flutter/flutter_assets/
+frontend/battleship/**/ios/Flutter/flutter_export_environment.sh
+frontend/battleship/**/ios/ServiceDefinitions.json
+frontend/battleship/**/ios/Runner/GeneratedPluginRegistrant.*
+
+# Exceptions to above rules.
+frontend/battleship/!**/ios/**/default.mode1v3
+frontend/battleship/!**/ios/**/default.mode2v3
+frontend/battleship/!**/ios/**/default.pbxuser
+frontend/battleship/!**/ios/**/default.perspectivev3
+frontend/battleship/!/packages/flutter_tools/test/data/dart_dependencies_test/**/.packages
