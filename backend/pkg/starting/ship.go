@@ -1,4 +1,4 @@
-package game
+package starting
 
 type Coordinate struct {
 	X int

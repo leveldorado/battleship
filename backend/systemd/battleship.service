@@ -1,0 +1,18 @@
+[Unit]
+Description=Battleship backend
+ConditionPathExists=/opt/battleship/backend/cmd/backend/battleship/battleship
+
+[Service]
+Type=simple
+User=battleship
+Group=battleship
+
+Restart=on-failure
+RestartSec=10
+startLimitIntervalSec=60
+
+WorkingDirectory=/opt/battleship/backend/cmd/backend/battleship/
+ExecStart=/opt/battleship/backend/cmd/backend/battleship/battleship
+
+[Install]
+WantedBy=multi-user.target

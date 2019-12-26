@@ -1,7 +1,4 @@
-
-
-
-
+import 'package:battleship/pages/game.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -16,10 +13,15 @@ class StartPage extends StatelessWidget {
       ),
       body: Center(
         child: RaisedButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => Game()),
+            );
+          },
           child: const Text(
-              'Start',
-              style: TextStyle(fontSize: 20)
+            'Start',
+            style: TextStyle(fontSize: 20),
           ),
         ),
       ),

@@ -1,13 +1,13 @@
-package game
+package starting
 
 import "math/rand"
 
 type Field struct {
-	Player string
-	Width  int
-	Height int
-	Ships  []Ship
-	Shots  []Shot
+	GameID   string
+	PlayerID string
+	Width    int
+	Height   int
+	Ships    []Ship
 }
 
 func (f *Field) PlaceShips(maxAttempts int) {

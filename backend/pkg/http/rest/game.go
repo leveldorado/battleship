@@ -5,10 +5,10 @@ import (
 	"net/http"
 
 	"github.com/labstack/echo"
-	"github.com/leveldorado/battleship/backend/pkg/game"
+	"github.com/leveldorado/battleship/backend/pkg/starting"
 )
 
-func createGame(g game.Service) func(echo.Context) error {
+func createGame(g starting.Service) func(echo.Context) error {
 	return func(ctx echo.Context) error {
 		g, err := g.Create(ctx.Request().Context())
 		if err != nil {

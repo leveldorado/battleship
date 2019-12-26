@@ -1,4 +1,5 @@
 .idea
+backend/cmd/battleship/battleship
 # Miscellaneous
 frontend/battleship/.class
 frontend/battleship/*.log
