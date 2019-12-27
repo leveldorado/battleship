@@ -9,6 +9,7 @@ Group=battleship
 
 Restart=on-failure
 RestartSec=10
+AmbientCapabilities=CAP_NET_BIND_SERVICE
 
 WorkingDirectory=/opt/battleship/backend/cmd/battleship/
 ExecStart=/opt/battleship/backend/cmd/battleship/battleship
