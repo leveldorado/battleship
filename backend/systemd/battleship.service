@@ -9,7 +9,6 @@ Group=battleship
 
 Restart=on-failure
 RestartSec=10
-startLimitIntervalSec=60
 
 WorkingDirectory=/opt/battleship/backend/cmd/backend/battleship/
 ExecStart=/opt/battleship/backend/cmd/backend/battleship/battleship
