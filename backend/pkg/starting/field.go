@@ -39,6 +39,7 @@ func (f *Field) PlaceShips(maxAttempts int) {
 					continue
 				}
 				f.Ships = append(f.Ships, Ship{Coordinates: cells})
+				break
 			}
 		}
 	}
