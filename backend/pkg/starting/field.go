@@ -33,7 +33,7 @@ func (f *Field) PlaceShips(maxAttempts int) {
 					}
 					break
 				}
-				cells, ok := getShipCoordinates(startPosition, occupiedCells, t.getSize(), rotation)
+				cells, ok := getShipCoordinates(f.Width, f.Height, startPosition, occupiedCells, t.getSize(), rotation)
 				if !ok {
 					invalidAttempts[startPosition] = true
 					continue

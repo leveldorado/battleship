@@ -56,7 +56,7 @@ const (
 	shipRotationVertical   = "vertical"
 )
 
-func getShipCoordinates(startPosition Coordinate, occupiedCells map[Coordinate]bool, size int, rotation shipRotation) ([]Coordinate, bool) {
+func getShipCoordinates(width, height int, startPosition Coordinate, occupiedCells map[Coordinate]bool, size int, rotation shipRotation) ([]Coordinate, bool) {
 	cells := []Coordinate{startPosition}
 	currentCell := startPosition
 	for i := 0; i < size; i++ {
@@ -66,10 +66,10 @@ func getShipCoordinates(startPosition Coordinate, occupiedCells map[Coordinate]b
 		case shipRotationHorizontal:
 			currentCell.X++
 		}
-		if currentCell.X >= size {
+		if currentCell.X >= width {
 			return nil, false
 		}
-		if currentCell.Y >= size {
+		if currentCell.Y >= height {
 			return nil, false
 		}
 		if occupiedCells[currentCell] {
