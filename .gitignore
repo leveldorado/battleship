@@ -1,5 +1,7 @@
 .idea
 backend/cmd/battleship/battleship
+.DS_Store
+frontend/.DS_Store
 # Miscellaneous
 frontend/battleship/.class
 frontend/battleship/*.log

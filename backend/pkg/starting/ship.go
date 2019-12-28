@@ -59,7 +59,7 @@ const (
 func getShipCoordinates(width, height int, startPosition Coordinate, occupiedCells map[Coordinate]bool, size int, rotation shipRotation) ([]Coordinate, bool) {
 	cells := []Coordinate{startPosition}
 	currentCell := startPosition
-	for i := 0; i < size; i++ {
+	for i := 1; i < size; i++ {
 		switch rotation {
 		case shipRotationVertical:
 			currentCell.Y++

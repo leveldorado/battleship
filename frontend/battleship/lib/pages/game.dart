@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:global_configuration/global_configuration.dart';
@@ -23,7 +25,7 @@ class _GameState extends State<Game> {
   @override
   void initState() {
     _createGame().then((Field field) {
-      super.setState((){
+      super.setState(() {
         widget.field = field;
       });
     });
@@ -34,39 +36,62 @@ class _GameState extends State<Game> {
     print("pressed $x and $y");
   }
 
-  Column _buildColumn() {
+  Widget _buildColumn() {
     if (widget.field == null) {
       return Column();
     }
     List<Row> rows = new List();
+    var screenSize = MediaQuery.of(context).size;
+    var width = screenSize.width;
+    if (MediaQuery.of(context).orientation == Orientation.landscape) {
+        width = screenSize.height * 0.8;
+    }
+    var cellWidth = width / widget.field.width;
+    var cellHeight = width / widget.field.height;
     for (var i = 0; i < widget.field.height; i++) {
-      List<IconButton> buttons = new List();
+      List<Widget> buttons = new List();
       for (var j = 0; j < widget.field.width; j++) {
-        buttons.add(IconButton(
-          icon: Icon(Icons.check_box_outline_blank),
-          onPressed: () => _fire(j, i),
+        buttons.add(Ink(
+          width: cellWidth,
+          height: cellHeight,
+          decoration: BoxDecoration(border: Border.all()),
+          child: InkWell(
+            onTap: () => _fire(j, i),
+          ),
         ));
       }
       rows.add(Row(children: buttons));
     }
     for (var ship in widget.field.ships) {
-       for (var coordinate in ship.coordinates) {
-         var x = rows.length;
-         rows[coordinate.y].children[coordinate.x] = IconButton(
-           icon: Icon(Icons.toys),
-           onPressed: () => _fire(coordinate.x, coordinate.y),
-         );
-       }
+      for (var coordinate in ship.coordinates) {
+        rows[coordinate.y].children[coordinate.x] = Ink(
+          width: cellWidth,
+          height: cellHeight,
+          decoration: BoxDecoration(border: Border.all(),
+              image: DecorationImage(
+                  image: AssetImage("assets/images/ship.jpeg"),
+                fit: BoxFit.fill,
+              )
+          ),
+          child: InkWell(
+            onTap: () => _fire(coordinate.x, coordinate.y),
+          ),
+        );
+      }
     }
-    return Column(children: rows);
+    var column = Column(children: rows);
+    if (MediaQuery.of(context).orientation == Orientation.landscape) {
+      return Container(padding: EdgeInsets.only(left: width * 0.2),child: column);
+    }
+    return column;
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-    appBar: AppBar(
-    title: Text("Game"),
-    ),
+      appBar: AppBar(
+        title: Text("Game"),
+      ),
       body: Center(
         child: _buildColumn(),
       ),
