@@ -2,8 +2,9 @@ import 'package:battleship/pages/start.dart';
 import 'package:flutter/material.dart';
 import 'package:global_configuration/global_configuration.dart';
 
-void main() async {
-  await GlobalConfiguration().loadFromAsset("app_settings");
+void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  GlobalConfiguration().loadFromAsset("app_settings");
   runApp(MyApp());
 }
 

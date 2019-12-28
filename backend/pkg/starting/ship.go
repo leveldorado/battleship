@@ -66,6 +66,12 @@ func getShipCoordinates(startPosition Coordinate, occupiedCells map[Coordinate]b
 		case shipRotationHorizontal:
 			currentCell.X++
 		}
+		if currentCell.X >= size {
+			return nil, false
+		}
+		if currentCell.Y >= size {
+			return nil, false
+		}
 		if occupiedCells[currentCell] {
 			return nil, false
 		}
