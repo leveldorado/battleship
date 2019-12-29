@@ -45,9 +45,27 @@ type passwordRepository interface {
 	Save(ctx context.Context, doc Password) error
 }
 
+type mailSender interface {
+	Send(toEmail, toName, subject, body string) error
+}
+
+type VerifyEmailCode struct {
+	AccountID string
+	Email     string
+	Code      string
+	SendAt    time.Time
+}
+
+type verifyEmailCodeRepository interface {
+	Save(ctx context.Context, doc VerifyEmailCode) error
+}
+
 type service struct {
-	accountRepo  accountRepository
-	passwordRepo passwordRepository
+	accountRepo         accountRepository
+	passwordRepo        passwordRepository
+	mailSender          mailSender
+	verifyEmailCodeRepo verifyEmailCodeRepository
+	endpoint            string
 }
 
 type ErrDuplicateEmail struct{}
@@ -87,8 +105,22 @@ func (s *service) Create(ctx context.Context, f CreateProfileForm) error {
 		Email:     f.Email,
 		CreatedAt: time.Now().UTC(),
 	}
-	if err := s.accountRepo.Create(ctx, acc); err != nil {
+	if err = s.accountRepo.Create(ctx, acc); err != nil {
 		return fmt.Errorf(`failed to create account: [acc: %+v, err: %w]`, acc, err)
 	}
-	return errors.New("email sending is not implemented")
+	doc := VerifyEmailCode{
+		AccountID: id,
+		Email:     f.Email,
+		Code:      uuid.New().String(),
+		SendAt:    time.Now().UTC(),
+	}
+	if err = s.verifyEmailCodeRepo.Save(ctx, doc); err != nil {
+		return fmt.Errorf(`failed to save veriy email code: [err: %w]`, err)
+	}
+	msg := fmt.Sprintf(`%s/api/v1/verify-email?email=%s&code=%s`, f.Email, doc.Code)
+	err = s.mailSender.Send(f.Email, f.FirstName+" "+f.LastName, "Please verify email by following link in message", msg)
+	if err != nil {
+		return fmt.Errorf(`failed to send email: [err: %w]`, err)
+	}
+	return nil
 }
